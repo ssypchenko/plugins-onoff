@@ -1,2 +1,4 @@
 # plugins-onoff
-Counter Strike Plugin Management to load and unload plugins
+Counter Strike Sharp Plugin Management to load and unload plugins
+
+Usage: plugins <enable/disable> <plugin_name>

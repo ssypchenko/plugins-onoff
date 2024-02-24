@@ -1,20 +1,11 @@
 using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
-using CounterStrikeSharp.API.Core.Translations;
-using CounterStrikeSharp.API.Modules.Commands;
-using CounterStrikeSharp.API.Modules.Timers;
-using Microsoft.Extensions.Logging;
-using CounterStrikeSharp.API.Modules.Utils;
 using CounterStrikeSharp.API.Core.Attributes.Registration;
-using CounterStrikeSharp.API.Modules.Cvars;
-using System.Drawing;
+using CounterStrikeSharp.API.Modules.Commands;
  
 namespace PluginsOnOff
 {
-    //[MinimumApiVersion(169)]
     public partial class PluginsOnOff : BasePlugin
     {
         public override string ModuleName => "PluginsManagement";
@@ -42,7 +33,6 @@ namespace PluginsOnOff
                 {
                     Directory.CreateDirectory(folder);
                 }
-
                 // Move each file to the disabled folder, overwriting if exists
                 MoveFileToFolder(pluginName, "dll", pluginFolder, folder, true);
                 MoveFileToFolder(pluginName, "pdb", pluginFolder, folder, true);
@@ -62,11 +52,9 @@ namespace PluginsOnOff
             string sourcePath = Path.Combine(sourceFolder, $"{pluginName}/{pluginName}.{extension}");
             string destinationPath = Path.Combine(destinationFolder, $"{pluginName}.{extension}");
 
-            // Move the file to the disabled folder, overwriting if specified
             if (File.Exists(sourcePath))
             {
                 File.Move(sourcePath, destinationPath, overwrite);
-                Console.WriteLine($"File '{pluginName}.{extension}' moved to disabled folder.");
             }
             else
             {
